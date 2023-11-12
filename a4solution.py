@@ -53,8 +53,8 @@ def estimate_tuning_freq(x, blockSize, hopSize, fs):
             error_in_cents[i] = 1200 * np.log2(freq / equal_temperament_pitches[nearest_pitch])
 
     hist, bin_edges = np.histogram(error_in_cents, 100, (-50, 50))
-    estimate_tuning_freq = bin_edges[np.argmax(hist)]
-    return estimate_tuning_freq
+    mode_of_delta_c = bin_edges[np.argmax(hist)]
+    return 2 ** (mode_of_delta_c / 1200) * 440
 
 
 # def generate_sine(frequency, amplitude, duration, sample_rate):
